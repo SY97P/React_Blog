@@ -25,7 +25,13 @@ function App() {
 		// var newArray = 글제목; // 이거는 참조가 걸림 -> deep copy 해야함.
 		// ...은 [] 혹은 {} 을 없애고 새로운 데이터로 넘겨주세요 라는 뜻
 		var newArray = [...글제목]; // deep copy
-		newArray[0] = '여자 코드 추천';
+		// console.log(newArray[0].includes('남자'));
+		// console.log(newArray[0].includes('여자'));
+		if (newArray[0].includes('남자')) {
+			newArray[0] = newArray[0].replace('남자', '여자');
+		} else {
+			newArray[0] = newArray[0].replace('여자', '남자');
+		}
 		글제목변경( newArray );
 	}
 	
@@ -58,10 +64,33 @@ function App() {
 			<p style= {dateStyle}>1월 6일 발행</p>
 			<hr/>
 		</div>
-
+			
+		<Modal />
+		
+			{/*<div className="modal">
+			<h2>제목2</h2>
+			<p>날짜2</p>
+			<p>상세내용2</p>
+		</div>*/}
 	  </div>
 	);
 	// }
+}
+
+// Component 만드는 법
+// Component는 function App() 과 동레벨에서 작성 (function App 바운드 밖에 선언)
+// Component 이름은 대문자로 시작해야함.
+// return 문 하나만 써야함.
+// return 문 안에 html 문법에서도 div 태그는 하나만 있어야 함. 
+// 최상위 div 태그는 <> </> 로 생략해도 됨.
+function Modal() {
+	return (
+		<div className="modal">
+			<h2>제목1</h2>
+			<p>날짜1</p>
+			<p>상세내용1</p>
+		</div>
+	)
 }
 
 export default App;
